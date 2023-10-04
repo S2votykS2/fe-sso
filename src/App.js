@@ -1,23 +1,28 @@
 import logo from "./logo.svg";
 import "./App.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { decreaseCounter, increaseCounter } from "./redux/action/counterAction";
 
 function App() {
+  const dispatch = useDispatch();
+  // Dispatch => fire action
+  // useSelector => sử dụng biến lưu trong reducer
+  const count = useSelector((state) => state.counter.count);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code> src / App.js </code> and save to reload.{" "}
-        </p>{" "}
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React{" "}
-        </a>{" "}
-      </header>{" "}
+      {" "}
+      {/* Fire action */}{" "}
+      <div className="">
+        Count: {count}{" "}
+        <button onClick={() => dispatch(increaseCounter())}>
+          {" "}
+          Increase Count{" "}
+        </button>{" "}
+        <button onClick={() => dispatch(decreaseCounter())}>
+          {" "}
+          Increase Count{" "}
+        </button>{" "}
+      </div>{" "}
     </div>
   );
 }
